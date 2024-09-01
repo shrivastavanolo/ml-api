@@ -10,7 +10,7 @@ CORS(app)
 # Load your Keras model
 model = load_model('budget_allocation_model_nn.keras')
 
-@app.route('/predict', methods=['POST'])
+@app.route('/predict', methods=['POST', 'OPTIONS'])
 def predict():
     # Receive income as input
     income = float(request.json['income'])
