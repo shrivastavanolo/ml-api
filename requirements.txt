@@ -3,4 +3,3 @@ tensorflow
 numpy
 flask_cors
 gunicorn
-fcntl
