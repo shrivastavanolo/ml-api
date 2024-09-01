@@ -11,7 +11,7 @@ CORS(app, resources={r"/*": {"origins": "https://knowfin.vercel.app"}})
 # Load your Keras model
 model = load_model('budget_allocation_model_nn.keras')
 
-@app.route('/predict', methods=['POST', 'OPTIONS'])
+@app.route('/predict', methods=['POST'])
 def predict():
     # Receive income as input
     income = float(request.json['income'])
