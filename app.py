@@ -2,21 +2,23 @@ from flask import Flask, request, jsonify
 from tensorflow.keras.models import load_model
 import numpy as np
 from flask_cors import CORS
-# from name import scaler
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "https://knowfin-ip0e9ye3h-shrivastavanolos-projects.vercel.app/budget"}})
+CORS(app)  # Enable CORS for all routes
 
 # Load your Keras model
 model = load_model('budget_allocation_model_nn.keras')
 
-
-@app.route('/predicts', methods=['GET'])
-def handle_options():
-    return "Hello"
-
-@app.route('/predict', methods=['POST','OPTIONS'])
+@app.route('/predict', methods=['POST', 'OPTIONS'])
 def predict():
+    if request.method == 'OPTIONS':
+        # Handle preflight request
+        response = jsonify({"message": "CORS preflight"})
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        response.headers.add("Access-Control-Allow-Methods", "POST, OPTIONS")
+        response.headers.add("Access-Control-Allow-Headers", "Content-Type")
+        return response
+
     # Receive income as input
     income = float(request.json['income'])
 
@@ -33,3 +35,6 @@ def predict():
 
     # Return prediction as JSON response
     return jsonify(prediction_list)
+
+if __name__ == '__main__':
+    app.run()
