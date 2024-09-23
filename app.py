@@ -5,7 +5,7 @@ from flask_cors import CORS
 # from name import scaler
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "https://knowfin.vercel.app"}})
+CORS(app, resources={r"/*": {"origins": "https://knowfin-ip0e9ye3h-shrivastavanolos-projects.vercel.app/budget"}})
 
 # Load your Keras model
 model = load_model('budget_allocation_model_nn.keras')
