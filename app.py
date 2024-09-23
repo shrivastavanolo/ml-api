@@ -29,6 +29,3 @@ def predict():
 
     # Return prediction as JSON response
     return jsonify(prediction_list)
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
