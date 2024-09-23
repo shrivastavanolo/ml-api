@@ -14,7 +14,7 @@ model = load_model('budget_allocation_model_nn.keras')
 def handle_options():
     return '', 200
 
-@app.route('/predict', methods=['GET'])
+@app.route('/predicts', methods=['GET'])
 def handle_options():
     return "Hello"
 
