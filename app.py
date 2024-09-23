@@ -7,9 +7,12 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "https://knowfin.vercel.app"}})
 
-
 # Load your Keras model
 model = load_model('budget_allocation_model_nn.keras')
+
+@app.route('/predict-budget', methods=['OPTIONS'])
+def handle_options():
+    return '', 200
 
 @app.route('/predict', methods=['POST'])
 def predict():
